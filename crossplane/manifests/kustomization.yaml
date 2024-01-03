@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+metadata:
+  name: crossplane
+
+namespace: crossplane-system
+
+# resources:
+# - 
+
+helmCharts:
+- name: crossplane
+  includeCRDs: true
+  namespace: crossplane-system
+  releaseName: crossplane
+  version: v1.14.4
+  repo: https://charts.crossplane.io/stable
+  # valuesInline:
+  #   args:
+  #     - --enable-external-secret-stores

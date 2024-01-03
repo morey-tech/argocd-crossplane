@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: crossplane
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/morey-tech/argocd-crossplane
+    path: crossplane/manifests
+    targetRevision: HEAD
+  destination: 
+    name: in-cluster
+    namespace: crossplane-system
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+    automated: {}
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jqPathExpressions:
+    - .spec.template.spec.containers[].env[].valueFrom.resourceFieldRef.divisor
+    - .spec.template.spec.initContainers[].env[].valueFrom.resourceFieldRef.divisor
