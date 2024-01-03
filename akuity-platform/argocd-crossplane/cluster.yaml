@@ -1,0 +1,16 @@
+apiVersion: argocd.akuity.io/v1alpha1
+kind: Cluster
+metadata:
+  name: kind-argocd-crossplane
+  namespace: akuity
+spec:
+  description: "kind cluster"
+  data:
+    size: small
+    appReplication: false
+    autoUpgradeDisabled: false
+    kustomization:
+      apiVersion: kustomize.config.k8s.io/v1beta1
+      kind: Kustomization
+    redisTunneling: false
+    targetVersion: 0.4.27

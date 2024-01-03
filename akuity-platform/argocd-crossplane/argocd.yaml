@@ -1,0 +1,14 @@
+apiVersion: argocd.akuity.io/v1alpha1
+kind: ArgoCD
+metadata:
+  name: argocd-crossplane
+spec:
+  description: "argocd-crossplane"
+  instanceSpec:
+    appsetPolicy:
+      policy: sync
+    assistantExtensionEnabled: true
+    clusterCustomizationDefaults:
+      kustomization: {}
+    declarativeManagementEnabled: true
+  version: v2.9.1
