@@ -10,3 +10,4 @@ data:
   accounts.admin: login
   helm.enabled: "true"
   kustomize.enabled: "true"
+  kustomize.buildOptions: --enable-helm

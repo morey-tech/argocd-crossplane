@@ -10,7 +10,7 @@ spec:
     path: crossplane/manifests
     targetRevision: HEAD
   destination: 
-    name: in-cluster
+    name: kind
     namespace: crossplane-system
   syncPolicy:
     syncOptions:
