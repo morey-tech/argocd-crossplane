@@ -10,7 +10,7 @@ spec:
     path: crossplane/manifests
     targetRevision: HEAD
   destination: 
-    name: kind
+    name: kind-argocd-crossplane
     namespace: crossplane-system
   syncPolicy:
     syncOptions:
