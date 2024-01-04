@@ -44,8 +44,7 @@ gcloud iam service-accounts keys create ${SA_NAME}.json \
 
 Create a Kubernetes secret with the GCP credentials.
 ```
-kubectl create secret \
-generic gcp-secret \
--n crossplane-system \
---from-file=creds=./${SA_NAME}.json
+kubectl create secret generic gcp-secret \
+  -n crossplane-system \
+  --from-file=creds=./${SA_NAME}.json
 ```
