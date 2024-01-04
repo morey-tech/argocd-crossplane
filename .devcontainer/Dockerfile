@@ -33,7 +33,7 @@ RUN curl -Lo /usr/local/bin/crossplane "https://releases.crossplane.io/stable/${
 
 ENV NODE_MAJOR=18
 RUN apt-get update \
-    && apt-get install -y ca-certificates curl gnupg \
+    && apt-get install -y apt-transport-https ca-certificates curl gnupg \
     && mkdir -p /etc/apt/keyrings \
     && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
     && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_MAJOR}.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list \
@@ -51,5 +51,12 @@ RUN curl -Lo /tmp/kustomize.tar.gz https://github.com/kubernetes-sigs/kustomize/
 ENV YQ_VERSION=v4.40.5
 RUN wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64.tar.gz -O - | tar xz \
         && mv yq_linux_amd64 /usr/bin/yq
+
+# https://console.cloud.google.com/storage/browser/cloud-sdk-release;tab=objects?prefix=&forceOnObjectsSortingFiltering=true&pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22,%22s%22:%5B(%22i%22:%22objectListDisplayFields%2FtimeLastModified%22,%22s%22:%221%22),(%22i%22:%22objectMetadata%2FstorageClass%22,%22s%22:%220%22),(%22i%22:%22displayName%22,%22s%22:%220%22)%5D))
+ENV GCLOUD_VERSION=458.0.1
+RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list \
+    && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg \
+    && apt-get update -y \
+    && apt-get install google-cloud-cli=${GCLOUD_VERSION}-0 -y
 
 RUN apt-get clean -y && rm -rf /var/lib/apt/lists/*
