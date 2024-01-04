@@ -10,7 +10,7 @@ kind: ProviderConfig
 metadata:
   name: default
 spec:
-  projectID: 
+  projectID: akuity-marketing
   credentials:
     source: Secret
     secretRef:
