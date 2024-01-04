@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bootstrap
+  name: appsets
 spec:
   destination:
     name: in-cluster
     namespace: argocd
   source:
-    path: akuity-platform/argocd-crossplane/apps/
+    path: akuity-platform/argocd-crossplane/appsets/
     repoURL: 'https://github.com/morey-tech/argocd-crossplane'
     targetRevision: HEAD
     directory: {}
