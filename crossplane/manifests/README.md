@@ -22,3 +22,30 @@ References:
 - [Crossplane PR to add CRDs to Helm chart](https://github.com/crossplane/crossplane/pull/4611)
 
 The workaround, is to have separate Applications for CRs that rely on CRDs created by the `crossplane-init` container. With this approach, second Application will fail to sync and keep retrying while the first Application deploys the CRDs. In this case, we have `crossplane` and `crossplane-providers` Applications. The former creates the `crossplane` Deployment with the `crossplane-init` container which creates the CRDs. The latter creates the `Provider` CRs that rely on the `Provider` CRD from the `crossplane-init` container.
+
+## Provider Credentials
+### GCP
+https://docs.crossplane.io/latest/getting-started/provider-gcp/#generate-a-gcp-service-account-json-file
+
+Initalize `gcloud`.
+```
+gcloud init
+```
+
+Create a service account, and generate a JSON key for it.
+```
+export SA_NAME=morey-tech-argocd-crossplane
+export PROJECT_ID=akuity-marketing
+gcloud iam service-accounts create ${SA_NAME} \
+  --description="${SA_NAME} sa" \
+  --display-name="${SA_NAME}"
+gcloud iam service-accounts keys create ${SA_NAME}.json \
+  --iam-account=${SA_NAME}@akuity-marketing.iam.gserviceaccount.com
+
+Create a Kubernetes secret with the GCP credentials.
+```
+kubectl create secret \
+generic gcp-secret \
+-n crossplane-system \
+--from-file=creds=./${SA_NAME}.json
+```
