@@ -7,7 +7,7 @@ spec:
     name: in-cluster
     namespace: argocd
   source:
-    path: apps/
+    path: akuity-platform/argocd-crossplane/apps/
     repoURL: 'https://github.com/morey-tech/argocd-crossplane'
     targetRevision: HEAD
     directory: {}

@@ -32,16 +32,3 @@ argocd login \
     --password akuity-argocd \
     --grpc-web
 ```
-
-### List the Applications
-```
-argocd app list
-```
-
-argocd-crossplane output:
-```
-NAME                   CLUSTER     NAMESPACE       PROJECT  STATUS  HEALTH   SYNCPOLICY  CONDITIONS  REPO                                               PATH                    TARGET
-argocd/bootstrap       in-cluster  argocd          default  Synced  Healthy  Auto-Prune  <none>      https://github.com/akuity/declarative-argocd-crossplane      apps/                   HEAD
-argocd/helm-guestbook  -argocd-crossplane        helm-guestbook  default  Synced  Healthy  Auto-Prune  <none>      https://github.com/morey-tech/argocd-argocd-crossplane-apps  general/helm-guestbook  HEAD
-argocd/sync-waves      -argocd-crossplane        sync-waves      default  Synced  Healthy  Auto-Prune  <none>      https://github.com/morey-tech/argocd-argocd-crossplane-apps  general/sync-waves      HEAD
-```
