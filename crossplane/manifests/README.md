@@ -41,6 +41,7 @@ gcloud iam service-accounts create ${SA_NAME} \
   --display-name="${SA_NAME}"
 gcloud iam service-accounts keys create ${SA_NAME}.json \
   --iam-account=${SA_NAME}@akuity-marketing.iam.gserviceaccount.com
+```
 
 Create a Kubernetes secret with the GCP credentials.
 ```
