@@ -1,0 +1,6 @@
+apiVersion: custom-api.example.org/v1alpha1
+kind: bucket
+metadata:
+  name: my-app-bucket-claim
+spec:
+  location: US
