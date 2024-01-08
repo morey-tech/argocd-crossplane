@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: crossplane
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/morey-tech/argocd-crossplane'
+    path: applications/my-app
+    targetRevision: HEAD
+  destination:
+    namespace: my-app
+    name: kind-argocd-crossplane
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
