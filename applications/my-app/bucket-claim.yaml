@@ -1,5 +1,5 @@
 apiVersion: custom-api.example.org/v1alpha1
-kind: bucket
+kind: Bucket
 metadata:
   name: my-app-bucket-claim
 spec:
