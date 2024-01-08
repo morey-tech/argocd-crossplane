@@ -12,6 +12,8 @@ spec:
     plural: buckets
   versions:
   - name: v1alpha1
+    served: true
+    referenceable: true
     schema:
       openAPIV3Schema:
         type: object
