@@ -20,3 +20,8 @@ spec:
       - type: FromCompositeFieldPath
         fromFieldPath: "spec.location"
         toFieldPath: "spec.forProvider.location"
+      readinessChecks:
+        - matchCondition:
+            status: 'True'
+            type: Ready
+          type: MatchCondition
