@@ -15,15 +15,12 @@ spec:
   template:
     metadata:
       name: '{{.path.basenameNormalized}}'
-      finalizers:
-        - resources-finalizer.argocd.argoproj.io
     spec:
       project: "default"
       source:
         repoURL: https://github.com/morey-tech/argocd-crossplane
         targetRevision: HEAD
         path: '{{.path.path}}'
-        kustomize: {}
       destination:
         name: kind-argocd-crossplane
         namespace: '{{.path.basenameNormalized}}'
@@ -31,6 +28,3 @@ spec:
         syncOptions:
           - CreateNamespace=true
           - FailOnSharedResource=true
-      info:
-        - name: 'Application Name: '
-          value: '{{.path.basenameNormalized}}'
